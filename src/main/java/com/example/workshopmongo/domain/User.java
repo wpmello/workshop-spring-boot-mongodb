@@ -1,8 +1,11 @@
 package com.example.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -13,6 +16,12 @@ public class User implements Serializable{
 	private String id;
 	private String name;
 	private String email;
+
+	// diferente do aninhamento de objetos ( que foi feito no Post com o AuthorDTO) aqui o objeto está apenas
+	// sendo referenciado e quem faz isso é o annotation '@DBRef'
+	// o argumento dentro do annotation garante que os posts só irão ser carregados se eu acessá-los
+	@DBRef(lazy = true)
+	private List<Post> posts = new ArrayList<>();
 	
 	public User() {
 	}
@@ -46,6 +55,10 @@ public class User implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
 	}
 
 	@Override
