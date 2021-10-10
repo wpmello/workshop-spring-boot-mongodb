@@ -31,6 +31,11 @@ public class UserService {
 		return repository.insert(obj);
 	}
 	
+	public void delete(String id) {
+		findById(id);
+		repository.deleteById(id);
+	}
+	
 	// esse método instancia um User a partir de um UserDTO
 	public User fromDTO(UserDTO userDto) {
 		return new User(userDto.getId(), userDto.getName(), userDto.getEmail());
