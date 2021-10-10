@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.workshopmongo.domain.Post;
 import com.example.workshopmongo.domain.User;
+import com.example.workshopmongo.dto.AuthorDTO;
 import com.example.workshopmongo.repositories.PostRepository;
 import com.example.workshopmongo.repositories.UserRepository;
 
@@ -32,10 +33,12 @@ public class Instantiation implements CommandLineRunner {
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, LocalDate.parse("2021-03-21"), "Partiu viagem", "Vou viajar para o Rio. Abraços", maria);
-		Post post2 = new Post(null, LocalDate.parse("2021-03-23"), "Bom dia", "Acordei feliz hoje", maria);
-
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		
+		// refatoração. agora os 'Post' são instanciados a partir dos dados do 'AuthorDTO'
+		Post post1 = new Post(null, LocalDate.parse("2021-03-21"), "Partiu viagem", "Vou viajar para o Rio. Abraços", new AuthorDTO(maria));
+		Post post2 = new Post(null, LocalDate.parse("2021-03-23"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
+
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 
