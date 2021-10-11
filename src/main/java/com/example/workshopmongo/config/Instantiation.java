@@ -38,7 +38,7 @@ public class Instantiation implements CommandLineRunner {
 		
 		// refatoração. agora os 'Post' são instanciados a partir dos dados do 'AuthorDTO'
 		Post post1 = new Post(null, LocalDate.parse("2021-03-21"), "Partiu viagem", "Vou viajar para o Rio. Abraços", new AuthorDTO(maria));
-		Post post2 = new Post(null, LocalDate.parse("2021-03-23"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
+		Post post2 = new Post(null, LocalDate.parse("2021-10-23"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
 
 		CommentDTO c1 = new CommentDTO("Boa viagem, mano!", LocalDate.parse("2021-03-21"), new AuthorDTO(alex));
 		CommentDTO c2 = new CommentDTO("Aproveite", LocalDate.parse("2021-03-22"), new AuthorDTO(bob));
